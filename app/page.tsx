@@ -2,16 +2,17 @@
 import Image from "next/image";
 import Header from "./_components/Header";
 import Hero from "./_components/Hero";
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { useEffect } from "react";
+import { useUser } from '@clerk/nextjs';
 
 export default function Home() {
+  const { user } = useUser();
 
-  const {user}=useKindeBrowserClient();
+  useEffect(() => {
+    // Remove or replace debug log in production
+    // console.log("--", user)
+  }, [user])
 
-  useEffect(()=>{
-    console.log("--",user)
-  },[user]) 
   return (
     <div>
       <Header/>

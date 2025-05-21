@@ -1,5 +1,8 @@
 import { FileListContext } from '@/app/_context/FilesListContext'
-import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs';
+// Remove this line:
+// import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs';
+// Add Clerk's useUser import:
+import { useUser } from '@clerk/nextjs';
 import { Archive, MoreHorizontal } from 'lucide-react';
 import moment from 'moment';
 import Image from 'next/image';
@@ -28,7 +31,10 @@ function FileList() {
 
   const {fileList_,setFileList_}=useContext(FileListContext);
   const [fileList,setFileList]=useState<any>();
-  const {user}:any=useKindeBrowserClient();
+  // Replace:
+  // const {user}:any=useKindeBrowserClient();
+  // With:
+  const { user } = useUser();
   const router=useRouter();
   useEffect(()=>{
     fileList_&&setFileList(fileList_);
@@ -64,12 +70,14 @@ function FileList() {
         {moment(file._creationTime).format('DD MMM YYYY')}
         </td>
         <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-         {user&& <Image src= {user?.picture}
-          alt='user'
-          width={30}
-          height={30}
-          className='rounded-full'
-          />}
+         {user && user.imageUrl && (
+           <Image src={user.imageUrl}
+             alt='user'
+             width={30}
+             height={30}
+             className='rounded-full'
+           />
+         )}
         </td>
         <td className="whitespace-nowrap px-4 py-2 text-gray-700">
          

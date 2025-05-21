@@ -19,8 +19,18 @@ interface SpeechToTextProps {
 // 🔹 Declare SpeechRecognition globally for TypeScript compatibility
 declare global {
   interface Window {
-    SpeechRecognition: typeof window.SpeechRecognition;
-    webkitSpeechRecognition: typeof SpeechRecognition;
+    SpeechRecognition: {
+      new (): {
+        continuous: boolean;
+        interimResults: boolean;
+        lang: string;
+        onresult: (event: SpeechRecognitionEvent) => void;
+        onerror: (event: SpeechRecognitionErrorEvent) => void;
+        start: () => void;
+        stop: () => void;
+      };
+    };
+    webkitSpeechRecognition: typeof window.SpeechRecognition;
   }
 }
 
