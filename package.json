@@ -29,7 +29,7 @@
     "lucide-react": "^0.335.0",
     "marked": "^15.0.7",
     "moment": "^2.30.1",
-    "next": "^14.2.25",
+    "next": "^15.3.2",
     "next-themes": "^0.2.1",
     "react": "^18",
     "react-dom": "^18",
@@ -38,7 +38,6 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@next/swc-darwin-arm64": "15.3.2",
     "@types/node": "^20",
     "@types/react": "^18.3.19",
     "@types/react-dom": "^18",
@@ -48,6 +47,6 @@
     "typescript": "^5"
   },
   "resolutions": {
-    "@next/swc-darwin-arm64": "15.3.2"
-  }
+  "@next/swc-darwin-arm64": "npm:@next/swc-linux-x64"
+}
 }
